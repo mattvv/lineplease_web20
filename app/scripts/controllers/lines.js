@@ -60,7 +60,6 @@ linesControllers
             line.set('line', linetext);
             line.set('gender', gender);
             //todo: loading screen
-            console.log('new line! adding it! with ' + linetext + ' and gender: ' + gender);
             line.saveParse().then(function(line) {
                 $scope.linetext = '';
                 //todo: refresh lines array!
@@ -70,4 +69,16 @@ linesControllers
                 console.log('Error!! ' + JSON.stringify(error));
             });
         }
+
+        $scope.removeLine = function(line) {
+            line.deleteLine().then(function() {
+              var index = $scope.lines.indexOf(line);
+
+              if (index > -1) {
+                $scope.lines.splice(index, 1);
+              }
+            }, function(error) {
+              console.log('could not delete line ' + error);
+            });
+          }
     }])

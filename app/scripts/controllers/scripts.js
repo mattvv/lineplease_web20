@@ -13,8 +13,6 @@ scriptsControllers
   		}
 
       $scope.removeScript = function(script) {
-        console.log('really remove!!! ' + script.id);
-
         script.deleteScript().then(function() {
           var index = $scope.scripts.indexOf(script);
 

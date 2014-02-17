@@ -3,9 +3,12 @@
 
 angular.module('ExternalDataServices')
 
-.factory('LineService', [function() {
+.factory('LineService', ['ParseCloudCodeAngular', function(ParseCloudCodeAngular) {
   var Line = Parse.Object.extendAngular({
-    className:'Line'
+    className:'Line',
+    deleteLine: function() {
+      return ParseCloudCodeAngular('removeLine', {lineId: this.id});
+    }
   });
 
   var Lines = Parse.Collection.extendAngular({
