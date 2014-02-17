@@ -79,6 +79,8 @@
         <span class="alert-message">{{flash.message}}</span>
     </div>
 
+    <div id="spinner-box" view-loading ng-cloak ng-show="isViewLoading"></div>
+    
     <div ui-view ng-hide="isViewLoading" ng-class="{fitterContainer: fitted, container: !fitted}" page-switch id="page-switch-set"></div>
 
     <script src="bower_components/jquery/jquery.js"></script>

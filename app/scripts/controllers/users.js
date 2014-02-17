@@ -50,16 +50,19 @@ usersControllers
     Parse.User.logOut();
     $location.path('/');
   }])
-  .controller('ForgotPasswordUsersController', ['$scope', '$location', 'flash', function($scope, $location, flash) {
+  .controller('ForgotPasswordUsersController', ['$scope', '$location', 'flash', '$rootScope', function($scope, $location, flash, $rootScope) {
     console.log('in forgotpassword users controller');
     $scope.email = '';
 
     $scope.resetPassword = function(email) {
+      $rootScope.isViewLoading = true;
       Parse.User.requestPasswordReset(email).then(function() {
+        $rootScope.isViewLoading = false;
         //todo: prompt user with a message their email is resete
         flash.success = 'Please check your email - your password has been sent!';
         $scope.$apply();
       }, function(error) {
+        $rootScope.isViewLoading = false;
         flash.error = 'Could not find your email - please try adding a space at the end';
         $scope.$apply();
         console.log(error);

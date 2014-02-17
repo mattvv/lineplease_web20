@@ -203,3 +203,17 @@ td {
   opacity: 1;
 }
 
+#spinner-box {
+  width: 100px;
+  height: 50px;
+  padding: 45px 0 0 0;
+  margin: 100px auto;
+  background-image: url("/images/loader.gif");
+  background-repeat: no-repeat;
+  background-position: center center;
+  /*background: #a2a2a2;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;*/
+}
+

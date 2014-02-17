@@ -114,8 +114,13 @@ angular.module('linepleaseApp', [
         $rootScope.menu = toState.menu;
         $rootScope.title = toState.title; 
         $rootScope.lineview = toState.lineview;
+        $rootScope.isViewLoading = true;
         $('.menu').hide(); //ensure menu is hidden between transitions (closes menu if you have clicked on it frmo another page)
       });
+
+      $rootScope.$on('$stateChangeSuccess', function() {
+        $rootScope.isViewLoading = false;
+      })
 
       $('.navbar ul li a').on('click', function() {
         $(this).parent().parent().find('ul').toggle(400);

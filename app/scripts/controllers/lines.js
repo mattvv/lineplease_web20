@@ -3,8 +3,8 @@
 
 var linesControllers = angular.module('linesControllers', []);
 linesControllers
-  .controller('LineIndexController', ['LineService', '$stateParams', '$scope', '$location', 'lines', 'ParseCloudCodeAngular', '_',
-    function (LineService, $stateParams, $scope, $location, lines, ParseCloudCodeAngular, _) {
+  .controller('LineIndexController', ['LineService', '$stateParams', '$scope', '$location', 'lines', 'ParseCloudCodeAngular', '_', '$rootScope',
+    function (LineService, $stateParams, $scope, $location, lines, ParseCloudCodeAngular, _, $rootScope) {
         $scope.lines = lines.models;
         console.log('script ID is ' + $stateParams.scriptId);
 
@@ -12,7 +12,7 @@ linesControllers
             options: {
                 html: true,
                 focusOpen: true,
-                onlySelect: true, 
+                onlySelect: false, 
                 source: function(request, response) {
                     var data = $scope.autocompleteOptions.methods.filter($scope.characters, request.term);
 
@@ -60,25 +60,31 @@ linesControllers
             line.set('line', linetext);
             line.set('gender', gender);
             //todo: loading screen
+            $rootScope.isViewLoading = true;
             line.saveParse().then(function(line) {
+                $rootScope.isViewLoading = false;
                 $scope.linetext = '';
                 //todo: refresh lines array!
                 $scope.lines.push(line);
                 $scope.cacheCharacters();
             }, function(error) {
+                $rootScope.isViewLoading = false;
                 console.log('Error!! ' + JSON.stringify(error));
             });
         }
 
         $scope.removeLine = function(line) {
+            $rootScope.isViewLoading = true;
             line.deleteLine().then(function() {
               var index = $scope.lines.indexOf(line);
 
               if (index > -1) {
                 $scope.lines.splice(index, 1);
               }
+              $rootScope.isViewLoading = false;
             }, function(error) {
-              console.log('could not delete line ' + error);
+                $rootScope.isViewLoading = false;
+                console.log('could not delete line ' + error);
             });
           }
     }])
