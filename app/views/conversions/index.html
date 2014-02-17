@@ -1,0 +1,20 @@
+<div>
+	<table cellpadding="0" cellspacing="0">
+	 <tbody>
+	  <tr ng-repeat="conversion in conversions">
+	   <td ng-click="openScript(conversion)">
+	   	{{conversion.get('name')}}
+	   </td>
+  	   <td>
+	   	{{conversion.get('percent')}}%
+	   </td>
+	   <td>
+	   	{{conversion.get('status')}}
+	   </td>
+	   <td>
+   	   	<p class="created-at">{{conversion.createdAt | fromNow}}</p>
+	   </td>
+	  </tr>
+	 </tbody>
+	</table>
+</div>

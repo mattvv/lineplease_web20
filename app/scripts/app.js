@@ -14,7 +14,8 @@ angular.module('linepleaseApp', [
     'usersControllers',
     'scriptsControllers',
     'profilesControllers',
-    'linesControllers'
+    'linesControllers',
+    'conversionsControllers'
   ])
   .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
     $stateProvider
@@ -88,6 +89,20 @@ angular.module('linepleaseApp', [
         url: '/profile',
         templateUrl: 'views/profile/index.html',
         controller: 'ProfileIndexController',
+      })
+
+      //conversions
+      .state('conversions', {
+        url: '/conversions',
+        templateUrl: 'views/conversions/index.html',
+        controller: 'ConversionIndexController',
+        resolve: {
+          'conversions': ['ConversionService', function(ConversionService) {
+            var conversions = new ConversionService.collection();
+            return conversions.loadMyConversions();
+          }]
+        },
+        title: 'Conversions'
       })
 
       $urlRouterProvider.otherwise('/scripts');
