@@ -3,9 +3,12 @@
 
 angular.module('ExternalDataServices')
 
-.factory('ScriptService', [function() {
+.factory('ScriptService', ['ParseCloudCodeAngular', function(ParseCloudCodeAngular) {
   var Script = Parse.Object.extendAngular({
-    className:'Script'
+    className:'Script',
+    deleteScript: function() {
+      return ParseCloudCodeAngular('removeScript', {scriptId: this.id});
+    }
   });
 
   var Scripts = Parse.Collection.extendAngular({

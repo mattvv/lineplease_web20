@@ -6,7 +6,7 @@
 	   	{{script.get('name')}}
 	   	<p class="created-at">{{script.createdAt | fromNow}}</p>
 	   </td>
-	   <td class="delete">
+	   <td class="delete" ng-really-message="Are you sure you want to delete this script?" ng-really-click="removeScript(script)">
 	   	Delete
 	   </td>
 	  </tr>

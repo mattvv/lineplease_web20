@@ -3,7 +3,7 @@
 
 var scriptsControllers = angular.module('scriptsControllers', []);
 scriptsControllers
-  .controller('ScriptIndexController', ['$scope', '$location', 'scripts', 
+  .controller('ScriptIndexController', ['$scope', '$location', 'scripts',
   	function ($scope, $location, scripts) {
   		$scope.scripts = scripts.models;
 
@@ -11,6 +11,20 @@ scriptsControllers
   			console.log('openscript ' + script.get('name'));
   			$location.path('/scripts/' + script.id);
   		}
+
+      $scope.removeScript = function(script) {
+        console.log('really remove!!! ' + script.id);
+
+        script.deleteScript().then(function() {
+          var index = $scope.scripts.indexOf(script);
+
+          if (index > -1) {
+            $scope.scripts.splice(index, 1);
+          }
+        }, function(error) {
+          console.log('could not delete script ' + error);
+        });
+      }
   	}])
   .controller('ScriptNewController', ['ScriptService', '$state', '$scope', function(ScriptService, $state, $scope) {
     $scope.createScript = function(name) {
