@@ -1,0 +1,155 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <!-- build:css(.tmp) styles/main.css -->
+        <link rel="stylesheet" href="styles/main.css">
+        <!-- endbuild -->
+</head>
+  <body ng-app="linepleaseApp">
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+      <script src="bower_components/es5-shim/es5-shim.js"></script>
+      <script src="bower_components/json3/lib/json3.min.js"></script>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <nav class="navbar {{menu}}">
+        <div id="button-top-left">
+            <ul>
+                <li ng-hide="lineview">
+                    <a>Menu</a>
+                    <ul class="blur menu">
+                        <li ui-sref="scripts_new">
+                            <div class="menutitle">Create Script</div>
+                            <div class="menusubtitle">Create a new Script</div>
+                        </li>
+                        <li ui-sref="scripts">
+                            <div class="menutitle">Scripts</div>
+                            <div class="menusubtitle">View your scripts</div>
+                        </li>
+                        <li>
+                            <div class="menutitle">Conversions</div>
+                            <div class="menusubtitle">View status of scripts you have uploaded</div>
+                        </li>
+                        <li ui-sref="profile">
+                            <div class="menutitle">Profile</div>
+                            <div class="menusubtitle">Edit your profile</div>
+                        </li>
+                    </ul>
+                </li>
+                <li ng-show="lineview">
+                    <a>Menu</a>
+                    <ul class="blur menu">
+                        <li ui-sref="scripts">
+                            <div class="menutitle">Back to Scripts</div>
+                            <div class="menusubtitle">Back to your listing of scripts</div>
+                        </li>
+                        <li>
+                            <div class="menutitle">Add Line</div>
+                            <div class="menusubtitle">Create a new Line</div>
+                        </li>
+                        <li>
+                            <div class="menutitle">Re-order Lines</div>
+                            <div class="menusubtitle">Change the order of your lines</div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div id="title" ng-bind="title"></div>
+        <div id="button-top-right">Test</div>
+    </nav>
+
+    <!-- Subscribe to all flash messages. -->
+    <div flash-alert active-class="in" class="alert fade" duration="5000">
+        <span class="alert-message">{{flash.message}}</span>
+    </div>
+
+    <div ui-view ng-hide="isViewLoading" ng-class="{fitterContainer: fitted, container: !fitted}" page-switch id="page-switch-set"></div>
+
+    <script src="bower_components/jquery/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="//www.parsecdn.com/js/parse-1.2.12.min.js"></script>
+
+    <!-- build:js scripts/plugins.js -->
+    <!-- endbuild -->
+
+    <!-- build:js scripts/modules.js -->
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/underscore/underscore.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/angular-moment/angular-moment.js"></script>
+    <script src="bower_components/jquery-ui/ui/jquery-ui.js"></script>
+    <script src="bower_components/jquery-ui/ui/jquery.ui.sortable.js"></script>
+    <script src="bower_components/angular-ui-sortable/sortable.js"></script>
+    <script src="bower_components/angular-flash/src/directives/flash-alert-directive.js"></script>
+    <script src="bower_components/angular-flash/src/services/flash-service.js"></script>
+
+    <!-- Parse specific -->
+    <script src="scripts/services/_ParseObject.js"></script>
+    <script src="scripts/services/ParseServices.js"></script>
+    <script src="scripts/services/ParseQueryAngular.js"></script>
+    <script src="scripts/services/ParseCloudCodeAngular.js"></script>
+    <!-- Facebook angular bindings -->
+    <script src="scripts/services/FacebookAngularPatch.js"></script>
+    <script src="scripts/services/blur.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+
+    <!-- filters -->
+    <script src="scripts/filters/from_now.js"></script>
+
+    <!-- controllers -->
+    <script src="scripts/controllers/users.js"></script>
+    <script src="scripts/controllers/scripts.js"></script>
+    <script src="scripts/controllers/lines.js"></script>
+    <script src="scripts/controllers/profiles.js"></script>
+
+    <!-- models -->
+    <script src="scripts/models/script.js"></script>
+    <script src="scripts/models/line.js"></script>
+    <!-- endbuild -->
+
+     <script type="text/javascript">
+      (function(doc, script) {
+        var js, 
+            fjs = doc.getElementsByTagName(script)[0],
+            add = function(url, id) {
+                if (doc.getElementById(id)) {return;}
+                js = doc.createElement(script);
+                js.src = url;
+                id && (js.id = id);
+                fjs.parentNode.insertBefore(js, fjs);
+            };
+        // Facebook SDK
+        add('//connect.facebook.net/en_US/all.js', 'facebook-jssdk');
+      }(document, 'script'));
+    </script>
+    <!-- Async resolve promise when FB SDK is loaded, this triggers Parse.FacebookUtils.init() -->
+    <script>
+      var fbDeferred = $.Deferred();
+      window.fbPromise = fbDeferred.promise();
+      window.fbAsyncInit = function() {
+        fbDeferred.resolve();
+      };
+    </script>
+</body>
+</html>

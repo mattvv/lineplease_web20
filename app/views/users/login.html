@@ -1,0 +1,23 @@
+<h2>Sign In</h2>
+
+<div>
+	<form role="form" ng-submit="login(email, password)">
+		<div>
+			<input type="text" ng-model="email" placeholder="Email or Username"/>
+		</div>
+		<div>
+			<input type="password" ng-model="password" placeholder="Password"/>
+		</div>
+		<div>
+			<input class="btn" type="Submit" value="Sign in">
+		</div>
+	</form>
+</div>
+
+<div>
+ <a ui-sref="home">Cancel</a>
+</div>
+
+<div>
+ <a ui-sref="forgot_password">Forgot Password?</a>
+</div>
