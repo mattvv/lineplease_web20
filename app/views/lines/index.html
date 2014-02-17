@@ -13,3 +13,22 @@
 	 </tbody>
 	</table>
 </div>
+
+<div>
+	<h2>Add a Line</h2>
+	<form role="form" ng-submit="createLine(character, linetext, gender)">
+		<div>
+			<input type="text" ng-model="character" placeholder="Character" ui-autocomplete="autocompleteOptions"/>
+		</div>
+		<div>
+			<input type="text" ng-model="linetext" placeholder="Line"/>
+		</div>
+		<div>
+			<input ng-model="gender" type="radio" name="gender" value="female" checked/>Female<br/>
+			<input ng-model="gender" type="radio" name="gender" value="male"/>Male
+		</div>
+		<div>
+			<input class="btn" type="Submit" value="Create Line">
+		</div>
+	</form>
+</div>

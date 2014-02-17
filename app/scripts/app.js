@@ -8,6 +8,8 @@ angular.module('linepleaseApp', [
     'ui.sortable',
     'angular-flash.service',
     'angular-flash.flash-alert-directive',
+    'underscore',
+    'ui.autocomplete',
 
     'usersControllers',
     'scriptsControllers',
