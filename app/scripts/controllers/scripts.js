@@ -12,6 +12,16 @@ scriptsControllers
   			$location.path('/scripts/' + script.id);
   		}
   	}])
-  .controller('ScriptNewController', [function() {
-
+  .controller('ScriptNewController', ['ScriptService', '$state', '$scope', function(ScriptService, $state, $scope) {
+    $scope.createScript = function(name) {
+      //create a new script
+      var script = new ScriptService.model();
+      script.set('name', name);
+      script.set('username', Parse.User.current().get('username'));
+      script.set('user', Parse.User.current());
+      //todo: some kind of loader needs to be put in
+      script.saveParse().then(function() {
+        $state.transitionTo('scripts');
+      });
+    }
   }])
