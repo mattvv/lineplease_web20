@@ -1,5 +1,8 @@
+'use strict';
+/*global FB:false */
+
 angular.module('FacebookPatch', [])
-.factory('FacebookAngularPatch',function ($q, $timeout) { 
+.factory('FacebookAngularPatch',function ($q, $timeout, _) {
 
   var fbApiAngular = function() {
 
@@ -23,7 +26,7 @@ angular.module('FacebookPatch', [])
         });
       });
 
-      FB.api.apply(FB, params);  
+      FB.api.apply(FB, params);
 
     });
 

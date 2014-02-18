@@ -1,15 +1,17 @@
+'use strict';
+
 angular.module('ParseServices')
 
-.factory('ParseQueryAngular',['$q','$timeout',function ($q, $timeout) { 
+.factory('ParseQueryAngular',['$q','$timeout', '_', function ($q, $timeout, _) {
 
 
   // we use $timeout 0 as a trick to bring resolved promises into the Angular digest
   var angularWrapper = $timeout;
 
-        return function(query,options) {
+  return function(query,options) {
 
       // if unspecified, the default function to call is 'find'
-      var functionToCall = "find";
+      var functionToCall = 'find';
       if (!_.isUndefined(options) && !_.isUndefined(options.functionToCall)) {
         functionToCall = options.functionToCall;
       }

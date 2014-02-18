@@ -1,4 +1,6 @@
 'use strict';
+/*global Parse:false */
+/*global $:false */
 
 angular.module('linepleaseApp', [
     'ui.router',
@@ -103,16 +105,16 @@ angular.module('linepleaseApp', [
           }]
         },
         title: 'Conversions'
-      })
+      });
 
-      $urlRouterProvider.otherwise('/scripts');
+    $urlRouterProvider.otherwise('/scripts');
   }])
-  .run(['ParseSDK', 'ExtendParseSDK', '$rootScope', '$location', 'flash',
-    function(ParseSDK, ExtendParseSDK, $rootScope, $location, flash) { 
+  .run(['ParseSDK', 'ExtendParseSDK', '$rootScope', '$location', 'flash', '_',
+    function(ParseSDK, ExtendParseSDK, $rootScope, $location, flash, _) {
       $rootScope.$on('$stateChangeStart', function(event, toState) {
         flash.clean();
         $rootScope.menu = toState.menu;
-        $rootScope.title = toState.title; 
+        $rootScope.title = toState.title;
         $rootScope.lineview = toState.lineview;
         $rootScope.isViewLoading = true;
         $('.menu').hide(); //ensure menu is hidden between transitions (closes menu if you have clicked on it frmo another page)
@@ -120,17 +122,17 @@ angular.module('linepleaseApp', [
 
       $rootScope.$on('$stateChangeSuccess', function() {
         $rootScope.isViewLoading = false;
-      })
+      });
 
       $('.navbar ul li a').on('click', function() {
         $(this).parent().parent().find('ul').toggle(400);
-      })
+      });
 
       $('.blur').blurjs({
         source: 'body',
         radius: 7,
         overlay: 'rgba(255,255,255,0.4)'
-      }); 
+      });
     
       $rootScope.$watch(function() { return $location.path(); }, function(newValue) {
         var loggedOutRoutes = ['/login', '/users/new', '/', '/forgot_password'];

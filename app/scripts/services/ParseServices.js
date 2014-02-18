@@ -1,3 +1,6 @@
+'use strict';
+/*global Parse:false */
+
 angular.module('ParseServices', [])
 
 .factory('ExtendParseSDK', ['ParseAbstractService', function(ParseAbstractService) {
@@ -15,7 +18,7 @@ angular.module('ParseServices', [])
 .factory('ParseSDK', function() {
 
   // pro-tip: swap these keys out for PROD keys automatically on deploy using grunt-replace
-  Parse.initialize("vO4vcHp53pKE9WC4nmljDP2a5RzbYXVP7wvZkFo5", "gsowB2J7bIfN6aGnFQ95wciSmuUJDvdtcUvx3qUU");
+  Parse.initialize('vO4vcHp53pKE9WC4nmljDP2a5RzbYXVP7wvZkFo5', 'gsowB2J7bIfN6aGnFQ95wciSmuUJDvdtcUvx3qUU');
 
   // FACEBOOK init
   window.fbPromise.then(function() {

@@ -1,23 +1,22 @@
 'use strict';
-/*gloabl Parse:false*/
+/*global Parse:false */
 
 var usersControllers = angular.module('usersControllers', []);
 usersControllers
   .controller('HomeController', ['$scope', '$location', function ($scope, $location) {
-  	$scope.fbLogin = function() {
-      if (Parse.User.current() == null) {
-          $location.path('/scripts');
+    $scope.fbLogin = function() {
+      if (Parse.User.current() === null) {
+        $location.path('/scripts');
       }
       Parse.FacebookUtils.logIn(null, {
-        success: function(user) {
+        success: function() {
           $location.path('/scripts');
         },
-        error: function(user, error) {
-          alert("User cancelled the Facebook login or did not fully authorize.");
+        error: function() {
+          console.log('User cancelled the Facebook login or did not fully authorize.');
         }
       });
-  		
-  	}
+    };
   }])
   .controller('LoginController', ['$scope', '$location', function ($scope, $location) {
     $scope.email = '';
@@ -44,7 +43,7 @@ usersControllers
       // } else {
       //   $scope.loginForm.submitted = true;
       // }
-    };
+      };
   }])
   .controller('LogoutController', ['$scope', '$location', function($scope, $location) {
     Parse.User.logOut();
@@ -68,4 +67,4 @@ usersControllers
         console.log(error);
       });
     };
-  }])
+  }]);

@@ -1,16 +1,17 @@
 'use strict';
-/*gloabl Parse:false*/
+/*global Parse:false */
+/*global $:false */
 
 var scriptsControllers = angular.module('scriptsControllers', []);
 scriptsControllers
   .controller('ScriptIndexController', ['$scope', '$location', 'scripts', '$rootScope',
-  	function ($scope, $location, scripts, $rootScope) {
-  		$scope.scripts = scripts.models;
+    function ($scope, $location, scripts, $rootScope) {
+      $scope.scripts = scripts.models;
 
-  		$scope.openScript = function(script) {
-  			console.log('openscript ' + script.get('name'));
-  			$location.path('/scripts/' + script.id);
-  		}
+      $scope.openScript = function(script) {
+        console.log('openscript ' + script.get('name'));
+        $location.path('/scripts/' + script.id);
+      };
 
       $scope.removeScript = function(script) {
         $rootScope.isViewLoading = true;
@@ -25,8 +26,8 @@ scriptsControllers
           $rootScope.isViewLoading = false;
           console.log('could not delete script ' + error);
         });
-      }
-  	}])
+      };
+    }])
   .controller('ScriptNewController', ['flash', 'ParseQueryAngular', 'ScriptService', 'ConversionService', '$state', '$scope', '$rootScope',
    function(flash, ParseQueryAngular, ScriptService, ConversionService, $state, $scope, $rootScope) {
     $scope.docData = null;
@@ -42,9 +43,9 @@ scriptsControllers
       script.saveParse().then(function() {
         $state.transitionTo('scripts');
       });
-    }
+    };
 
-    $scope.importScript = function(name, filename) {
+    $scope.importScript = function(name) {
       var file = new Parse.File($scope.filename, { base64: $scope.docData });
       $rootScope.isViewLoading = true;
 
@@ -63,15 +64,14 @@ scriptsControllers
       }, function(error) {
         $rootScope.isViewLoading = false;
         flash.error = error;
-      })
+      });
+    };
 
-    }
-
-   $('#upload').change(function() {
+    $('#upload').change(function() {
       var filename = $('#upload').val().split('/').pop().split('\\').pop();
       $scope.$apply(function() {
         $scope.filename = filename;
-      })
+      });
     });
 
     $scope.$watch('upload', function(newVal) {
@@ -80,5 +80,5 @@ scriptsControllers
         var base64Data = matches[2];
         $scope.docData = base64Data;
       }
-    })
-  }])
+    });
+  }]);
