@@ -1,0 +1,16 @@
+{
+  "name": "angular-underscore-module",
+  "main": "./angular-underscore-module.js",
+  "dependencies": {},
+  "homepage": "https://github.com/andresesfm/angular-underscore-module",
+  "_release": "a0383fca64",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "a0383fca64838baf3cb06df1ec1ea41216122a9e"
+  },
+  "_source": "git://github.com/andresesfm/angular-underscore-module.git",
+  "_target": "*",
+  "_originalSource": "angular-underscore-module",
+  "_direct": true
+}
