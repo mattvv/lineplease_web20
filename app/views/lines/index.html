@@ -27,8 +27,10 @@
 			<input type="text" ng-model="linetext" placeholder="Line"/>
 		</div>
 		<div>
-			<input ng-model="gender" type="radio" name="gender" value="female" checked/>Female<br/>
-			<input ng-model="gender" type="radio" name="gender" value="male"/>Male
+			<input id="female" ng-model="gender" type="radio" name="gender" value="female" class="css-checkbox"/>
+			<label for="female" class="css-label">Female</label>
+			<input id="male" ng-model="gender" type="radio" name="gender" value="male" class="css-checkbox"/>
+			<label for="male" class="css-label">Male</label>
 		</div>
 		<div>
 			<input class="btn" type="Submit" value="Create Line">

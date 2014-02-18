@@ -6,6 +6,7 @@ linesControllers
   .controller('LineIndexController', ['LineService', '$stateParams', '$scope', '$location', 'lines', 'ParseCloudCodeAngular', '_', '$rootScope',
     function (LineService, $stateParams, $scope, $location, lines, ParseCloudCodeAngular, _, $rootScope) {
         $scope.lines = lines.models;
+        $scope.gender = 'female';
         console.log('script ID is ' + $stateParams.scriptId);
 
         $scope.autocompleteOptions = {
