@@ -391,7 +391,7 @@ module.exports = function (grunt) {
   grunt.registerTask('default', [
     'jshint',
     'test',
-    'build',
-    'build_gh_pages'
+    'build'
+    // 'build_gh_pages'
   ]);
 };
