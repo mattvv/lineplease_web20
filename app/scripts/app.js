@@ -64,7 +64,7 @@ angular.module('linepleaseApp', [
       })
 
       .state('scripts_new', {
-        url: '/scripts',
+        url: '/scripts/new',
         templateUrl: 'views/scripts/new.html',
         controller: 'ScriptNewController',
         title: 'Create Script'

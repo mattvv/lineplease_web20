@@ -1,4 +1,5 @@
 <div>
+	<h2>Create a new Script</h2>
 	<form role="form" ng-submit="createScript(name)">
 		<div>
 			<input type="text" ng-model="name" placeholder="Script Name"/>
@@ -9,7 +10,30 @@
 	</form>
 </div>
 
-<hr>
+<hr/>
+Or
+<hr/>
 <div>
- Todo: Put the importing script stuff in here
+ <h2>Import your own script to Line Please</h2>
+	<p>You can upload your own PDF or word file to line please and we will try and convert it to a line please script.</p>
+
+	<p>Please note:</p>
+	<ul>
+		<li>Scripts are limited to 5 pages</li>
+		<li>Conversions can take a long time (sometimes longer then 30 minutes)</li>
+		<li>The converter prefers it if your characters start with capital letters (ie/ MATT)</li>
+	</ul>
+
+	<form role="form" ng-submit="importScript(name)">
+		<div>
+			<input type="text" ng-model="name" placeholder="Script Name"/>
+		</div>
+		<div>
+			<input type="file" name="fileselect" id="upload" fileread="upload"/>
+		</div>
+		<div>
+			<input class="btn" type="Submit" value="Import Script">
+		</div>
+	</form>
+		
 </div>

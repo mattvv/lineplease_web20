@@ -3,9 +3,13 @@
 
 angular.module('ExternalDataServices')
 
-.factory('ConversionService', [function() {
+.factory('ConversionService', ['ParseCloudCodeAngular', function(ParseCloudCodeAngular) {
   var Conversion = Parse.Object.extendAngular({
-    className:'Conversion'
+    className:'Conversion',
+    enqueue: function() {
+      console.log('queuing!');
+      return ParseCloudCodeAngular('conversion', {conversionId: this.id});
+    }
   });
 
   var Conversions = Parse.Collection.extendAngular({
