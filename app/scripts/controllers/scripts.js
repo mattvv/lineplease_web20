@@ -30,6 +30,7 @@ scriptsControllers
   .controller('ScriptNewController', ['flash', 'ParseQueryAngular', 'ScriptService', 'ConversionService', '$state', '$scope', '$rootScope',
    function(flash, ParseQueryAngular, ScriptService, ConversionService, $state, $scope, $rootScope) {
     $scope.docData = null;
+    $scope.filename = null;
 
     $scope.createScript = function(name) {
       //create a new script
@@ -44,7 +45,7 @@ scriptsControllers
     }
 
     $scope.importScript = function(name, filename) {
-      var file = new Parse.File(name, { base64: $scope.docData });
+      var file = new Parse.File($scope.filename, { base64: $scope.docData });
       $rootScope.isViewLoading = true;
 
       ParseQueryAngular(file, {functionToCall: 'save', params:null}).then(function() {
@@ -65,6 +66,13 @@ scriptsControllers
       })
 
     }
+
+   $('#upload').change(function() {
+      var filename = $('#upload').val().split('/').pop().split('\\').pop();
+      $scope.$apply(function() {
+        $scope.filename = filename;
+      })
+    });
 
     $scope.$watch('upload', function(newVal) {
       if (newVal) {

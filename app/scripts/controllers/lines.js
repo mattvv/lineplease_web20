@@ -43,7 +43,7 @@ linesControllers
                     var line = $scope.lines[count]
                     if (line.id === $(ui.item).attr('id')) {
                         console.log('reordering line!')
-                        ParseCloudCodeAngular('reorderLines', {lineId: line.id, position: $(ui.item).index()});
+                        ParseCloudCodeAngular('reorderLines', {lineId: line.id, position: $(ui.item).index(), scriptId: $stateParams.scriptId});
                     }
                 }
             }
